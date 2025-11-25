@@ -1,94 +1,10 @@
 import { Box, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import "./App.css";
-import { Dialog, DropdownMenu } from "radix-ui";
+import { Dialog, Popover, Tabs } from "radix-ui";
+import Menus from "./menu";
+import MyDropdownMenu from "./MyDropdownMenu";
 
 function App() {
-  const Menus = [
-    {
-      id: 1,
-      title: "Menu 1",
-      titleColor: "text-yellow-400",
-      itemsColor: "text-gray-200",
-      items: [
-        {
-          id: 1,
-          content: "the content",
-        },
-        {
-          id: 2,
-          content: "the content",
-        },
-        {
-          id: 3,
-          content: "the content",
-        },
-        {
-          id: 4,
-          content: "the content",
-        },
-        {
-          id: 5,
-          content: "the content",
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: "Menu 2",
-      titleColor: "text-yellow-500",
-      itemsColor: "text-gray-400",
-      items: [
-        {
-          id: 1,
-          content: "the content",
-        },
-        {
-          id: 2,
-          content: "the content",
-        },
-        {
-          id: 3,
-          content: "the content",
-        },
-        {
-          id: 4,
-          content: "the content",
-        },
-        {
-          id: 5,
-          content: "the content",
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: "Menu 3",
-      titleColor: "text-yellow-600",
-      itemsColor: "text-gray-50",
-      items: [
-        {
-          id: 1,
-          content: "the content",
-        },
-        {
-          id: 2,
-          content: "the content",
-        },
-        {
-          id: 3,
-          content: "the content",
-        },
-        {
-          id: 4,
-          content: "the content",
-        },
-        {
-          id: 5,
-          content: "the content",
-        },
-      ],
-    },
-  ];
   return (
     <>
       <Flex className=" w-full flex-col h-screen items-center justify-center gap-8 bg-slate-100">
@@ -133,20 +49,83 @@ function App() {
       </Box>
       <Box className="w-full h-screen bg-green-950 flex items-center relative">
         {Menus.map((menu) => (
-          <DropdownMenu.Root key={menu.id}>
-            <DropdownMenu.Trigger className={menu.titleColor}>
-              {menu.title}
-            </DropdownMenu.Trigger>
-
-            <DropdownMenu.Content sideOffset={5}>
-              {menu.items.map((item) => (
-                <DropdownMenu.Item key={item.id} className={menu.itemsColor}>
-                  {item.content}
-                </DropdownMenu.Item>
-              ))}
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
+          <MyDropdownMenu key={menu} menu={menu} />
         ))}
+      </Box>
+      <Box className="w-full h-screen bg-emerald-950 flex items-center relative">
+        <Popover.Root>
+          <Popover.Trigger className="text-gray-50">Info</Popover.Trigger>
+          <Popover.Content side="bottom" className="text-gray-300">
+            {" "}
+            Hello there!
+          </Popover.Content>
+        </Popover.Root>
+      </Box>
+      <Box className="w-full h-screen bg-rose-950 text-gray-100 flex items-center justify-center p-6">
+        <Tabs.Root
+          defaultValue="account"
+          className="w-full max-w-2xl bg-red-200 p-6 rounded-lg shadow-lg"
+        >
+          {/* Tab Headers */}
+          <Tabs.List className="flex justify-center gap-8 text-rose-800 mb-6">
+            <Tabs.Trigger
+              value="account"
+              className="px-4 py-2 rounded-md font-semibold hover:bg-rose-300 data-[state=active]:bg-rose-400"
+            >
+              Account
+            </Tabs.Trigger>
+
+            <Tabs.Trigger
+              value="password"
+              className="px-4 py-2 rounded-md font-semibold hover:bg-rose-300 data-[state=active]:bg-rose-400"
+            >
+              Password
+            </Tabs.Trigger>
+
+            <Tabs.Trigger
+              value="2ndPassword"
+              className="px-4 py-2 rounded-md font-semibold hover:bg-rose-300 data-[state=active]:bg-rose-400"
+            >
+              2nd Password
+            </Tabs.Trigger>
+
+            <Tabs.Trigger
+              value="3rdPassword"
+              className="px-4 py-2 rounded-md font-semibold hover:bg-rose-300 data-[state=active]:bg-rose-400"
+            >
+              3rd Password
+            </Tabs.Trigger>
+          </Tabs.List>
+
+          {/* Tab Content */}
+          <Tabs.Content
+            value="account"
+            className="h-[200px] bg-red-800 text-gray-100 font-bold text-2xl flex justify-center items-center uppercase rounded-md p-6 data-[state=inactive]:hidden"
+          >
+            This is the account
+          </Tabs.Content>
+
+          <Tabs.Content
+            value="password"
+            className="h-[200px] bg-red-800 text-gray-100 font-bold text-2xl flex justify-center items-center uppercase rounded-md p-6 data-[state=inactive]:hidden"
+          >
+            This is the account password
+          </Tabs.Content>
+
+          <Tabs.Content
+            value="2ndPassword"
+            className="h-[200px] bg-red-800 text-gray-100 font-bold text-2xl flex justify-center items-center uppercase rounded-md p-6 data-[state=inactive]:hidden"
+          >
+            This is the account 2nd password
+          </Tabs.Content>
+
+          <Tabs.Content
+            value="3rdPassword"
+            className="h-[200px] bg-red-800 text-gray-100 font-bold text-2xl flex justify-center items-center uppercase rounded-md p-6 data-[state=inactive]:hidden"
+          >
+            This is the account 3rd password
+          </Tabs.Content>
+        </Tabs.Root>
       </Box>
     </>
   );
