@@ -1,6 +1,6 @@
 import { Box, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import "./App.css";
-import { Dialog, Popover, Tabs } from "radix-ui";
+import { AlertDialog, Dialog, DropdownMenu, Popover, Tabs } from "radix-ui";
 import Menus from "./menu";
 import MyDropdownMenu from "./MyDropdownMenu";
 
@@ -126,6 +126,60 @@ function App() {
             This is the account 3rd password
           </Tabs.Content>
         </Tabs.Root>
+      </Box>
+      <Box className="w-full h-screen bg-[#D4AF37] bg-[url('https://images.unsplash.com/photo-1553356084-58ef4a67b2a7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center  text-gray-100 flex items-center justify-center p-6">
+        <Box className="flex gap-8 bg-yellow-200 px-8 py-4 rounded-[50px]">
+          {Menus.map((menu) => (
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger className=" text-yellow-900">
+                {menu.title}
+              </DropdownMenu.Trigger>
+
+              <DropdownMenu.Content
+                sideOffset={2}
+                className="dropdown-content backdrop-blur-md bg-white/20 border border-white/30 rounded-xl p-6 shadow-lg flex flex-col gap-4"
+              >
+                {menu.items.map((item) => (
+                  <DropdownMenu.Item key={item.id} className="text-xl">
+                    {item.content}
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          ))}
+        </Box>
+      </Box>
+      <Box className="w-full h-screen bg-[#F2E8DC] text-gray-100 flex items-center justify-center p-6">
+        <AlertDialog.Root>
+          <AlertDialog.Trigger className="text-red-950 text-2xl font-semibold">
+            Open dialog
+          </AlertDialog.Trigger>
+
+          <AlertDialog.Portal>
+            <AlertDialog.Overlay className="fixed inset-0 bg-red-950/50" />
+
+            <AlertDialog.Content className="fixed left-1/2 top-1/2 w-[90vw] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-xl">
+              <AlertDialog.Title className="text-lg font-semibold">
+                This is the title
+              </AlertDialog.Title>
+
+              <AlertDialog.Description className="mt-3 text-sm text-gray-600">
+                This is the description. Add whatever information the user needs
+                to know before confirming this action.
+              </AlertDialog.Description>
+
+              <div className="mt-6 flex justify-end gap-3">
+                <AlertDialog.Cancel className="rounded-md border px-3 py-1.5 text-sm">
+                  Cancel
+                </AlertDialog.Cancel>
+
+                <AlertDialog.Action className="rounded-md bg-red-600 px-3 py-1.5 text-sm text-white">
+                  Confirm
+                </AlertDialog.Action>
+              </div>
+            </AlertDialog.Content>
+          </AlertDialog.Portal>
+        </AlertDialog.Root>
       </Box>
     </>
   );
