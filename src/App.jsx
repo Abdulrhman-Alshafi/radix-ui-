@@ -1,4 +1,12 @@
-import { Box, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Text,
+  Theme,
+} from "@radix-ui/themes";
 import "./App.css";
 import { AlertDialog, Dialog, DropdownMenu, Popover, Tabs } from "radix-ui";
 import Menus from "./menu";
@@ -181,6 +189,15 @@ function App() {
           </AlertDialog.Portal>
         </AlertDialog.Root>
       </Box>
+      <Theme
+        accentColor="mint"
+        grayColor="gray"
+        panelBackground="solid"
+        scaling="100%"
+        radius="full"
+      >
+        <Button>Click me</Button>
+      </Theme>
     </>
   );
 }
